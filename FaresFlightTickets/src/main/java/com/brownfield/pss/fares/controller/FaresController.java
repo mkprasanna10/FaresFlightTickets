@@ -20,7 +20,7 @@ public class FaresController
 	FaresService fareservice;
 	
 	@GetMapping("/get")
-	@Loggable
+	//@Loggable
 	public Fare findByFareByFlightNumberAndFlightDate(@RequestParam(value="flightNumber") String FlightNumber, 
 			@RequestParam(value="flightDate") String FlightDate)
 	{
