@@ -9,7 +9,6 @@ import com.brownfield.Logging.Loggable;
 import com.brownfield.pss.fares.entity.Fare;
 import com.brownfield.pss.fares.repository.FaresRepository;
 
-
 @Service
 public class FaresService 
 {
@@ -23,31 +22,34 @@ public class FaresService
 		this.faresRepository = faresRepository;
 	}
 			
-	@Loggable
+	//@Loggable
 	public Fare findByFareByFlightNumberAndFlightDate(String FlightNumber, String FlightDate)
 	{
-		System.out.println(FlightNumber);
-		System.out.println(FlightDate);
-		System.out.println(faresRepository);
-		
-		Fare fare = faresRepository.getFareByFlightNumberAndFlightDate(FlightNumber, FlightDate);
-		
+		Fare fare = faresRepository.getFareByFlightNumberAndFlightDate(FlightNumber, FlightDate);	
 		System.out.println(fare.toString());
 		return fare;
 	}
 	
-	@Loggable
-	public void findByFareByFlightNumber(String FlightNumber)
+	//@Loggable
+	public List<Fare> findByFareByFlightNumber(String FlightNumber)
 	{
+		if(FlightNumber==null)
+			throw new NullPointerException();
+		
 		List<Fare> fare = faresRepository.getFareByFlightNumber(FlightNumber);
 		fare.stream().forEach(System.out::println);	
+		return fare;
 	}
 	
-	@Loggable
-	public void findByFareByFlightDate(String FlightDate)
+	//@Loggable
+	public List<Fare> findByFareByFlightDate(String FlightDate)
 	{
+		if(FlightDate==null)
+			throw new NullPointerException();
+		
 		List<Fare> fare = faresRepository.getFareByFlightDate(FlightDate);
 		fare.stream().forEach(System.out::println);	
+		return fare;
 	}
 	
 }
